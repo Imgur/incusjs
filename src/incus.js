@@ -217,3 +217,5 @@ Incus.prototype.send = function(command) {
         this.longpoll(command);
     }
 }
+
+module.exports = Incus;

@@ -2,9 +2,9 @@
   "name": "incusjs",
   "version": "1.0.0",
   "description": "",
-  "main": "incus.js",
+  "main": "src/incus.js",
   "scripts": {
-    "test": "jasmine-node spec/"
+    "test": "jasmine-node src/spec/unit/"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/jacobgreenleaf/incusjs#readme",
   "devDependencies": {
-    "coveralls": "^2.11.3",
+    "coveralls": "latest",
     "jasmine-node": "latest"
   }
 }
