@@ -1,0 +1,19 @@
+{
+  "name": "incusjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jacobgreenleaf/incusjs.git"
+  },
+  "author": "Brian Kassouf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacobgreenleaf/incusjs/issues"
+  },
+  "homepage": "https://github.com/jacobgreenleaf/incusjs#readme"
+}
