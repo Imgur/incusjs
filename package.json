@@ -2,7 +2,7 @@
   "name": "incusjs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "incus.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jacobgreenleaf/incusjs/issues"
   },
-  "homepage": "https://github.com/jacobgreenleaf/incusjs#readme"
+  "homepage": "https://github.com/jacobgreenleaf/incusjs#readme",
+  "devDependencies": {
+    "jasmine": "^2.3.2"
+  }
 }
