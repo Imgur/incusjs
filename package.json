@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jacobgreenleaf/incusjs#readme",
   "devDependencies": {
+    "coveralls": "^2.11.3",
     "jasmine-node": "latest"
   }
 }
