@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/incus.js",
   "scripts": {
-    "test": "jasmine-node src/spec/unit/"
+    "test": "jasmine-node src/"
   },
   "repository": {
     "type": "git",
