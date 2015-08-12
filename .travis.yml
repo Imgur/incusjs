@@ -1,3 +1,10 @@
 language: node_js
-node_js: 
-    - "iojs"
+node_js:
+- iojs
+deploy:
+  provider: npm
+  email: jacob@jacobgreenleaf.com
+  api_key:
+    secure: XuZ72fDeHHojBI/SJVCh40b7GW7mKrg13+b9dX/XA7fT1mxqaCqx9BoyCWPIOBwzyhiQA0pE5vu1r3bTffbPhdJRb0IswFAgbnJyFRTkUT1vlCZk+1AUTQRFAbikojta75qqifG19H4yupSmYSDa3WSuOfpwD6fHsXUL6UjAZ8TDXiZY9eqyBdaRAymveh68aKslk+1z6k8AWbUcBTBXhWz0KACp0tJyFTmtZ/trosD7Jm94KryhF8fCRLr3rgho2vLqCrDo0MOaAl6p1uN+PIEsmXANRjoD5NPRb0z6tREI16E58kBh6l2wfuHT9S0BAENhnvvapUmWa0wJ9q8PLqSJ3EynFUlISgaUutwm9M2lbRRTiJIUF6QqsJI1+r8311Xa639In+qomq40lNdaV6wgbDHUA81F6QEKNgPJbfY5SlrWf9fmb0cGh3HkLh0MpjnLcDXR3Rjl+URZiisJj7CfwsQtmo5lQca7CdDYw8t6EFro2nGIORdVG6f9CTdNL3CLQS8SimnXNViJZuhjVpEgdHY4VJtOuv+hOCD/O0Q2HrgRUBcokUWGUyF+T4jf/xHtqw+HOmvYeNkdedxFBNIUqOay3AxeygMEMeoWQuC6ZXx5XssPYgqBkAPWiKjoDYgc2v0QxUNbnzhmu6PkZQ9SGfT6hR0h7Y8FMvyrMj8=
+  on:
+    tags: true
