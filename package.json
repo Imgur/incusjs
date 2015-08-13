@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/incus.js",
   "scripts": {
-    "prepublish": "browserify src/*.js src/lib/*.js --insert-global-vars -o dist/incus.dist.js",
+    "prepublish": "browserify src/*.js src/lib/*.js -o dist/incus.dist.js",
     "test": "jasmine-node src/"
   },
   "repository": {
