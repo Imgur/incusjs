@@ -1,6 +1,7 @@
 language: node_js
 node_js:
 - iojs
+before_deploy: npm run-script prepublish
 deploy:
   - provider: npm
     email: jacob@jacobgreenleaf.com
