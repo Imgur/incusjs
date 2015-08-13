@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/incus.js",
   "scripts": {
+    "prepublish": "browserify src/*.js src/lib/*.js --insert-global-vars -o dist/incus.dist.js",
     "test": "jasmine-node src/"
   },
   "repository": {
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/jacobgreenleaf/incusjs#readme",
   "devDependencies": {
+    "browserify": "^11.0.1",
     "coveralls": "latest",
     "jasmine-node": "latest"
   }
