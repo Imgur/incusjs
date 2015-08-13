@@ -70,7 +70,7 @@ Presence.prototype = {
             this.handleUserActivity.lastSuccessfulCall = nowUnixTimeMsec;
             this.reset();
         }
-    },
+    }
 };
 
 module.exports = Presence;

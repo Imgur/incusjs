@@ -96,7 +96,7 @@ Incus.prototype.newCommand = function(command, message) {
     message['time'] = Math.round(new Date().getTime() / 1000);
     var obj = {
         "command": command,
-        "message": message,
+        "message": message
     };
     
     return JSON.stringify(obj);

@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/incus.js",
   "scripts": {
-    "prepublish": "browserify src/*.js src/lib/*.js -o dist/incus.dist.js",
+    "prepublish": "browserify src/*.js src/lib/*.js -o dist/incus.js && ccjs dist/incus.js > dist/incus.min.js",
     "test": "jasmine-node src/"
   },
   "repository": {
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jacobgreenleaf/incusjs#readme",
   "devDependencies": {
     "browserify": "^11.0.1",
+    "closurecompiler": "^1.5.2",
     "coveralls": "latest",
     "jasmine-node": "latest"
   }
