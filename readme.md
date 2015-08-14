@@ -55,3 +55,15 @@ incus.on("chatmessage", function(msg) {
 });
 
 ```
+
+## Example 4: Browserify
+
+Incus.js is distributed as a Browserify module. If you already use Browserify, using Incus is easy:
+
+```Javascript
+var IncusClient = require('incus');
+
+var incus = new IncusClient('http://localhost:4000', 'UID', '/page/path');
+
+incus.MessageUser('event1', 'uid1', {foo: 3});
+```
