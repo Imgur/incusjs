@@ -58,7 +58,15 @@ incus.on("chatmessage", function(msg) {
 
 ## Example 4: Browserify
 
-Incus.js is distributed as a Browserify module. If you already use Browserify, using Incus is easy:
+Incus.js is distributed as a NPM module. If you already use node, using Incus is easy! Just add `incusjs` to your `package.json` and off you go:
+
+```Javascript
+{
+    "dependencies": {
+        "incusjs": "1.*"
+    }
+}
+```
 
 ```Javascript
 var IncusClient = require('incus');
