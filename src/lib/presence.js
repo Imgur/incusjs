@@ -8,6 +8,7 @@ var Presence = function(incus, inactivityThresholdSeconds) {
     this.incus = incus;
     this.timerReference = null;
     this.lastActiveTime = null;
+    this._lastResetCall = null;
     this.inactivityThresholdSeconds = (typeof inactivityThresholdSeconds !== 'undefined' ? inactivityThresholdSeconds : 60);
 
     document.body.addEventListener('touchstart', this.handleUserActivity.bind(this));
@@ -66,8 +67,8 @@ Presence.prototype = {
         var nowUnixTimeMsec = (+ new Date);
 
         // Throttle reset commands
-        if(this.handleUserActivity.lastSuccessfulCall === null || this.handleUserActivity.lastSuccessfulCall + (1000 / MAXIMUM_COMMNANDS_PER_SECOND) <= nowUnixTimeMsec) {
-            this.handleUserActivity.lastSuccessfulCall = nowUnixTimeMsec;
+        if(this._lastResetCall === null || this._lastResetCall + (1000 / MAXIMUM_COMMNANDS_PER_SECOND) <= nowUnixTimeMsec) {
+            this._lastResetCall = nowUnixTimeMsec;
             this.reset();
         }
     }
