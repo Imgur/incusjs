@@ -1,4 +1,4 @@
-# Incus.js [![Build Status](https://travis-ci.org/jacobgreenleaf/incusjs.svg)](https://travis-ci.org/jacobgreenleaf/incusjs) [![NPM](https://img.shields.io/npm/v/incusjs.svg)](https://www.npmjs.com/package/incusjs)
+# Incus.js [![Build Status](https://travis-ci.org/Imgur/incusjs.svg)](https://travis-ci.org/jacobgreenleaf/incusjs) [![NPM](https://img.shields.io/npm/v/incusjs.svg)](https://www.npmjs.com/package/incusjs)
 
 JavaScript bindings for talking to an [Incus](http://github.com/Imgur/incus) server in the browser or on the server-side. 
 
