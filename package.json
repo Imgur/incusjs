@@ -21,6 +21,7 @@
     "browserify": "^11.0.1",
     "closurecompiler": "^1.5.2",
     "coveralls": "latest",
-    "jasmine-node": "latest"
+    "jasmine-node": "latest",
+    "event-emitter": "^0.3.3"
   }
 }

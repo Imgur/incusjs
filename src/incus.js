@@ -1,3 +1,5 @@
+var EventEmitter = require('event-emitter');
+
 function Incus(url, UID, page) {
     this.MAXRETRIES   = 6;
     
@@ -8,13 +10,12 @@ function Incus(url, UID, page) {
     this.UID          = UID;
     this.page         = page;
     
-    this.onMessageCbs = {};
-    this.connectedCb  = false;
-    
     this.socket          = null;
     this.poll            = null;
     this.connected       = false;
     this.socketConnected = false;
+
+    this.emitter = new EventEmitter({});
     
     this.connect();
 }
@@ -67,11 +68,8 @@ Incus.prototype.longpoll = function(command) {
     this.poll.send();
     
     this.connected = true;
-    
-    if(!this.connectedCb && "connect" in this.onMessageCbs) {
-        this.connectedCb = true;
-        this.onMessageCbs["connect"].call(null);
-    }
+
+    this.emitter.emit('connect');
 }
 
 Incus.prototype.connect = function() {
@@ -114,21 +112,13 @@ Incus.prototype.authenticate = function() {
         this.setPage(this.page);
     }
     
-    if(!this.connectedCb && "connect" in this.onMessageCbs) {
-        this.connectedCb = true;
-        this.onMessageCbs["connect"].call(null);
-    }
+    this.emitter.emit('connect');
     
     this.connected = true;
 }
 
 Incus.prototype.on = function(name, func) {
-    if(name == 'connect' && this.connected) {
-        this.connectedCb = true;
-        func();
-    }
-    
-    this.onMessageCbs[name] = func;
+    this.emitter.on('event:' + name, func);
 }
 
 Incus.prototype.onMessage = function(e) {
@@ -139,10 +129,8 @@ Incus.prototype.onMessage = function(e) {
 
     var msg = JSON.parse(e.data);
 
-    if("event" in msg && msg.event in this.onMessageCbs) {
-        if(typeof this.onMessageCbs[msg.event] == "function") {
-            this.onMessageCbs[msg.event].call(null, msg.data);
-        }
+    if("event" in msg) {
+        this.emitter.emit('event:' + msg.event, msg.data);
     }
 }
 
