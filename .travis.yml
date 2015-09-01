@@ -12,7 +12,9 @@ deploy:
   - provider: releases
     api_key: 
         secure: adYUWchzu62jAkoISGizsgZH99CttnUUD6jfKWyUtpjXyRY148Ie1JgKzwb9DGu8do8PTqF5R5yPXgK6Vw7LwJiMYKO+SEVDiaHXNsdKkm4O4B44DNqojMMbBHX9fJPhI4I2Coo+8r9yOgzKieqf/+WuyOPJZ12/9/Vntj4xSJEwDUvaYkWOhLMXZbMQldc3z/H7gWz8JLbCBfc4C7hPIh35u4v552H4J6htHoTnhfgtXgpO2Tn3o+Ggkh84KNEInE4Fj9GAZDpJ0QIUtLUmt1a/dUw6YGA5C0hf9OBhUjC94QHSrbmoQkMR9gLPwAU0ii56wHoHM2mharmpnp4QaG/BznRQB422IHlKgEcd+oY31a0XMgIAq2/g3/HuVrCHiZQlsdWorZ5OpNVe6TP9ctNOndwJ3ZcoXsV3BAAOWkfu8ErqbKP+IVi83o5dMdeATgq0/2qL28tG/Nri+DnC+yzeib+xga+RPav19QAXfHYqDevBzFqswd4i8vupJ5bxYkWaXziy9Wag3Neti/IMkbYTSIaSg8R/0sXNkZW3CoWSpySOOmPBGFJnzTakZjeA5qQCcF2+TRNCEO8YcBlxFJH8FQjjGOcdg+x0JsZy4kpR6ACsNDcXHH8J3zUlDx+Jaj0uzY+nL9g4dtON5YpvGUdDw7HXCCSOPTC/8/iyBYA=
-    file: "dist/incus.min.js"
+    file: 
+        - "dist/incus.min.js"
+        - "dist/incus.js"
     skip_cleanup: true
     on: 
       tags: true
