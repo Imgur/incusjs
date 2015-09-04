@@ -51,7 +51,7 @@ Presence.prototype = {
         };
 
         var message = {
-            'present': options.present
+            'presence': options.present
         };
 
         this.incus.send(this.incus.newCommand(command, message));
