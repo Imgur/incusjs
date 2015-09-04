@@ -12,6 +12,7 @@ function Incus(url, UID, page) {
     
     this.socket          = null;
     this.poll            = null;
+    this.pollCommand     = null;
     this.connected       = false;
     this.socketConnected = false;
 
@@ -25,6 +26,7 @@ Incus.prototype.longpoll = function(command) {
     
     if(this.poll != null) {
         this.poll.abort();
+        this.pollCommand = null;
     }
     
     this.poll = new XMLHttpRequest();
@@ -36,6 +38,7 @@ Incus.prototype.longpoll = function(command) {
     
     if(typeof command != 'undefined') {
         data['command'] = command;
+        this.pollCommand = command;
     }
     
     var query_string = this.serialize(data);
@@ -53,7 +56,7 @@ Incus.prototype.longpoll = function(command) {
                 self.longpoll();
             }
             
-            if(response.status != 200 && response.status !== 0) {
+            if(response.status != 200 && response.status != 204 && response.status !== 0) {
                 self.pollRetries++;
             }
             
@@ -102,6 +105,7 @@ Incus.prototype.newCommand = function(command, message) {
 
 Incus.prototype.authenticate = function() {
     this.socketConnected = true;
+
     this.poll.abort();
     
     var message = this.newCommand({'command': "authenticate", 'user': this.UID}, {});
@@ -110,6 +114,11 @@ Incus.prototype.authenticate = function() {
     
     if(this.page) {
         this.setPage(this.page);
+    }
+
+    if(this.pollCommand !== null) {
+        this.socket.send(this.pollCommand);
+        this.pollCommand = null;
     }
     
     this.emitter.emit('connect');
