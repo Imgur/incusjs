@@ -1,11 +1,17 @@
+var EventEmitter = require('event-emitter');
+
 var INCUS_COMMAND_SETPRESENCE = 'setpresence';
 var MAXIMUM_COMMNANDS_PER_SECOND = 20;
 
 /**
  * Notify Incus when we go from being inactive to active or vice versa.
  */
-var Presence = function(incus, inactivityThresholdSeconds) {
-    this.incus = incus;
+var Presence = function(inactivityThresholdSeconds) {
+    var emitter = new EventEmitter();
+    this.emitter = emitter;
+    this.on = emitter.on.bind(emitter);
+    this.off = emitter.off.bind(emitter);
+
     this.timerReference = null;
     this.lastActiveTime = null;
     this._lastResetCall = null;
@@ -16,23 +22,17 @@ var Presence = function(incus, inactivityThresholdSeconds) {
     document.body.addEventListener('mousemove', this.handleUserActivity.bind(this));
 
     this.reset();
-
-    this.notifyIncus({
-        present: true
-    });
 };
 
 Presence.prototype = {
     reset: function() {
-        var nowUnixTime = (+ new Date / 1000);
+        var nowUnixTime = (+ new Date() / 1000);
 
         if(this.lastActiveTime !== null) {
             var wasPresent = (this.lastActiveTime + this.inactivityThresholdSeconds >= nowUnixTime);
 
             if(!wasPresent) {
-                this.notifyIncus({
-                    present: true
-                });
+                this.emitter.emit('return', this.lastActiveTime, nowUnixTime);
             }
         }
 
@@ -45,22 +45,8 @@ Presence.prototype = {
         this.timerReference = window.setTimeout(this.handleTimeout.bind(this), this.inactivityThresholdSeconds * 1000);
     },
 
-    notifyIncus: function(options) {
-        var command = {
-            'command': INCUS_COMMAND_SETPRESENCE
-        };
-
-        var message = {
-            'presence': options.present
-        };
-
-        this.incus.send(this.incus.newCommand(command, message));
-    },
-
     handleTimeout: function() {
-        this.notifyIncus({
-            present: false
-        });
+        this.emitter.emit('idle');
     },
 
     handleUserActivity: function(e) {
@@ -73,5 +59,41 @@ Presence.prototype = {
         }
     }
 };
+
+var IncusNotifier = function(presence, incus) {
+    this.presence = presence;
+    this.incus = incus;
+
+    presence.on('return', this.handleHere.bind(this));
+    presence.on('idle', this.handleIdle.bind(this));
+
+    this.handleHere();
+};
+
+IncusNotifier.prototype.notifyIncus = function(options) {
+    var command = {
+        'command': INCUS_COMMAND_SETPRESENCE
+    };
+
+    var message = {
+        'presence': options.present
+    };
+
+    this.incus.send(this.incus.newCommand(command, message));
+};
+
+IncusNotifier.prototype.handleHere = function() {
+    this.notifyIncus({
+        present: true
+    });
+};
+
+IncusNotifier.prototype.handleIdle = function() {
+    this.notifyIncus({
+        present: false
+    });
+};
+
+Presence.IncusNotifier = IncusNotifier;
 
 module.exports = Presence;
