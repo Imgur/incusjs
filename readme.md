@@ -6,14 +6,14 @@ JavaScript bindings for talking to an [Incus](http://github.com/Imgur/incus) ser
 
 ```Javascript
 var incus = new Incus.Client('http://localhost:4000', 'UID', '/page/path');
-
-incus.on('connect', function() {
+ 
+incus.on('connect', () => {
     console.log('connected');
-}
-
-incus.on('Event1', function (data) {
+});
+ 
+incus.on('Event1', (data) => {
    console.log(data);
-}
+});
 ```
 
 ## Example 2: Updating the page
